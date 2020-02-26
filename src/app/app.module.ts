@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-bootstrap';
+import { TesteDirective } from './teste.directive';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TesteDirective
   ],
   imports: [
     BrowserModule,
