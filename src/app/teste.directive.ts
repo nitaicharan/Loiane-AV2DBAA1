@@ -1,28 +1,16 @@
-import { Directive, Input, HostListener, Renderer2, ElementRef, OnInit, HostBinding } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: 'p[appTeste]'
+  selector: '[ngElse]'
 })
-export class TesteDirective implements OnInit {
+export class TesteDirective {
 
   constructor(
-    private renderer: Renderer2,
-    private elementeref: ElementRef
+    private templateRef: TemplateRef<any>,
+    private viewContainerRef: ViewContainerRef,
   ) { }
 
-  @Input('appTeste') defaultColor: string;
-  @Input() color: string;
-
-  @HostBinding('style.backgroundColor') backgroundcolor: string;
-
-  @HostListener('mouseenter') mouseenter() {
-    this.backgroundcolor = this.color;
-  }
-  @HostListener('mouseleave') mouseleave() {
-    this.backgroundcolor = this.defaultColor || null;
-  }
-
-  ngOnInit(): void {
-    this.backgroundcolor = this.defaultColor || null;
+  @Input() set ngElse(condition: boolean) {
+    condition ? this.viewContainerRef.createEmbeddedView(this.templateRef) : this.viewContainerRef.clear();
   }
 }
