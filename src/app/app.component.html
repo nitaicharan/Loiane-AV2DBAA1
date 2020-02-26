@@ -1,22 +1,3 @@
 <article>
-  <h1>Class e Style binding</h1>
-  <select #classe (change)="0">
-    <option value="success">Success</option>
-    <option value="info">Info</option>
-    <option value="warning">Warning</option>
-    <option value="danger">Danger</option>
-  </select>
-  <br>
-  <br>
-  <alert [type]="classe.value">O valor selecionado é {{classe.value}}</alert>
-  <br>
-  <br>
-  <alert type="success">Success</alert>
-  <alert type="info">Info</alert>
-  <alert type="warning">Warning</alert>
-  <alert type="danger">Danger</alert>
-  <br>
-  <br>
-  <p *ngIf="false">Não aparecerá</p>
-  <p *ngElse="true">Aparecerá</p>
+  <h1>Nome: {{'Nitai Charan' | uppercase | lowercase | capitalize}}</h1>
 </article>
