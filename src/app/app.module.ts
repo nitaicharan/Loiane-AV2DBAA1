@@ -6,10 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-bootstrap';
 import { TestePipe } from './teste.pipe';
+import { DataFormComponent } from './data-form/data-form.component';
+import { TemplateFormComponent } from './template-form/template-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     TestePipe,
+    DataFormComponent,
+    TemplateFormComponent,
   ],
   imports: [
     BrowserModule,
