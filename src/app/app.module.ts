@@ -8,6 +8,7 @@ import { AlertModule } from 'ngx-bootstrap';
 import { TestePipe } from './teste.pipe';
 import { DataFormComponent } from './data-form/data-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { TemplateFormComponent } from './template-form/template-form.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
