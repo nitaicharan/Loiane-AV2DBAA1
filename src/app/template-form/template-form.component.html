@@ -13,5 +13,5 @@
       [class.is-valid]="email.valid && email.touched">
     <div class="invalid-feedback">E-mail inválido</div>
   </div>
-  <button type="submit" class="btn btn-primary">Submite</button>
+  <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submite</button>
 </form>
