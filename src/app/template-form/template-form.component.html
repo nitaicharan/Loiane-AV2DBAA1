@@ -1,15 +1,17 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div class="form-group">
-    <label for="nome">Nome</label>
+    <label for="nome" control-label>Nome</label>
     <input type="text" #nome="ngModel" name="nome" id="nome" class="form-control" placeholder="nome"
       [(ngModel)]="user.nome" required [class.is-invalid]="nome.invalid  && nome.touched"
       [class.is-valid]="nome.valid && nome.touched">
+    <div class="invalid-feedback">Nome requerido</div>
   </div>
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" name="email" id="email" class="form-control" placeholder="nome@domain.com"
       [(ngModel)]="user.email" required #email="ngModel" email [class.is-invalid]="email.invalid  && email.touched"
       [class.is-valid]="email.valid && email.touched">
+    <div class="invalid-feedback">E-mail inválido</div>
   </div>
   <button type="submit" class="btn btn-primary">Submite</button>
 </form>
