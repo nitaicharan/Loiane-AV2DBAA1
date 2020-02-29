@@ -8,8 +8,13 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateFormComponent implements OnInit {
 
+  user = {
+    nome: '',
+    email: ''
+  };
+
   onSubmit(formulario: NgForm) {
-    console.log(formulario);
+    console.log(this.user);
   }
 
   constructor() { }
