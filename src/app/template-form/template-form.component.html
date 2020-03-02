@@ -23,7 +23,7 @@
     <div class="form-group col-sm-3">
       <label for="cep" control-label>CEP</label>
       <input type="text" #cep="ngModel" name="cep" id="cep" class="form-control" placeholder="CEP"
-        [(ngModel)]="user.cep" required [ngClass]="classError(cep)">
+        [(ngModel)]="user.cep" (blur)="consultaCEP(cep.value)" required [ngClass]="classError(cep)">
       <div class="invalid-feedback">CEP obrigatório</div>
     </div>
 
