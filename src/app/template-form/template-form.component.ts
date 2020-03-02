@@ -10,7 +10,14 @@ export class TemplateFormComponent implements OnInit {
 
   user = {
     nome: '',
-    email: ''
+    email: '',
+    cep: '',
+    numero: '',
+    complemento: '',
+    rua: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
   };
 
   onSubmit(formulario: NgForm) {
