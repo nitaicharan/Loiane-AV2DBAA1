@@ -29,4 +29,7 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  requiredTouched = (campo): boolean => campo.invalid && campo.touched;
+
+  classError = (campo): string => this.requiredTouched(campo) ? 'is-invalid' : '';
 }
