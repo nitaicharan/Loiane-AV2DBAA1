@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, Form } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { tap, take } from 'rxjs/operators';
+import { UserModel } from '../user.model';
 
 @Component({
   selector: 'app-template-form',
@@ -9,21 +10,9 @@ import { tap, take } from 'rxjs/operators';
   styleUrls: ['./template-form.component.scss']
 })
 export class TemplateFormComponent implements OnInit {
-
-  user = {
-    nome: '',
-    email: '',
-    cep: '',
-    numero: '',
-    complemento: '',
-    rua: '',
-    bairro: '',
-    cidade: '',
-    estado: '',
-  };
-
   onSubmit(formulario: NgForm) {
-    console.log(this.user);
+    const user: UserModel = formulario.value;
+    console.log(user);
   }
 
   constructor(
@@ -37,32 +26,27 @@ export class TemplateFormComponent implements OnInit {
 
   classError = (campo): string => this.requiredTouched(campo) ? 'is-invalid' : '';
 
-  consultaCEP(cep: string) {
+  consultaCEP(cep: string, f: NgForm) {
     cep = cep.replace(/\D/g, '');
     if (cep !== '') {
       if (/^[0-9]{8}$/.test(cep)) {
         this.httpClient.get(`https://viacep.com.br/ws/${cep}/json/`).pipe(
-          tap((address: {
-            cep: '',
-            logradouro: '',
-            complemento: '',
-            bairro: '',
-            localidade: '',
-            uf: '',
-            unidade: '',
-            ibge: '',
-            gia: ''
-          }) => {
-            this.user.cep = address.cep;
-            this.user.rua = address.logradouro;
-            this.user.complemento = address.complemento;
-            this.user.bairro = address.bairro;
-            this.user.cidade = address.localidade;
-            this.user.estado = address.uf;
-          }),
+          tap(address => this.viacepToUser(f, address)),
           take(1),
         ).subscribe();
       }
     }
+  }
+  viacepToUser(f: NgForm, address) {
+    f.form.patchValue({
+      endereco: {
+        cep: address.cep,
+        rua: address.logradouro,
+        complemento: address.complemento,
+        bairro: address.bairro,
+        cidade: address.localidade,
+        estado: address.uf
+      }
+    });
   }
 }

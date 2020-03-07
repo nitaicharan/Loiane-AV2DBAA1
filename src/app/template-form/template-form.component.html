@@ -3,8 +3,8 @@
   <div class="form-row">
     <div class="form-group col-sm-12">
       <label for="nome" control-label>Nome</label>
-      <input type="text" #nome="ngModel" name="nome" id="nome" class="form-control" placeholder="Nome"
-        [(ngModel)]="user.nome" required [ngClass]="classError(nome)">
+      <input type="text" #nome="ngModel" name="nome" id="nome" class="form-control" placeholder="Nome" ngModel required
+        [ngClass]="classError(nome)">
       <div class="invalid-feedback">Nome requerido</div>
     </div>
   </div>
@@ -13,63 +13,65 @@
   <div class="form-row">
     <div class="form-group col-sm-12">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" [(ngModel)]="user.email"
-        required #email="ngModel" email [ngClass]="classError(email)">
+      <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" ngModel required
+        #email="ngModel" email [ngClass]="classError(email)">
       <div class="invalid-feedback">E-mail inválido</div>
     </div>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <label for="cep" control-label>CEP</label>
-      <input type="text" #cep="ngModel" name="cep" id="cep" class="form-control" placeholder="CEP"
-        [(ngModel)]="user.cep" (blur)="consultaCEP(cep.value)" required [ngClass]="classError(cep)">
-      <div class="invalid-feedback">CEP obrigatório</div>
+  <div ngModelGroup="endereco">
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <label for="cep" control-label>CEP</label>
+        <input type="text" #cep="ngModel" name="cep" id="cep" class="form-control" placeholder="CEP" ngModel
+          (blur)="consultaCEP(cep.value,f)" required [ngClass]="classError(cep)">
+        <div class="invalid-feedback">CEP obrigatório</div>
+      </div>
+
+      <div class="form-group col-sm-3">
+        <label for="numero" control-label>Número</label>
+        <input type="text" #numero="ngModel" name="numero" id="numero" class="form-control" placeholder="Número" ngModel
+          required [ngClass]="classError(numero)">
+        <div class="invalid-feedback">Número obrigatório</div>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <label for="complemento" control-label>Complemento</label>
+        <input type="text" #complemento="ngModel" name="complemento" id="complemento" class="form-control"
+          placeholder="Complemento" ngModel>
+      </div>
     </div>
 
-    <div class="form-group col-sm-3">
-      <label for="numero" control-label>Número</label>
-      <input type="text" #numero="ngModel" name="numero" id="numero" class="form-control" placeholder="Número"
-        [(ngModel)]="user.numero" required [ngClass]="classError(numero)">
-      <div class="invalid-feedback">Número obrigatório</div>
+    <div class="form-row">
+      <div class="form-group col-sm-12">
+        <label for="rua" control-label>Rua</label>
+        <input type="text" #rua="ngModel" name="rua" id="rua" class="form-control" placeholder="Rua" ngModel required
+          [ngClass]="classError(rua)">
+        <div class="invalid-feedback">Rua obrigatório</div>
+      </div>
     </div>
 
-    <div class="form-group col-sm-6">
-      <label for="complemento" control-label>Complemento</label>
-      <input type="text" #complemento="ngModel" name="complemento" id="complemento" class="form-control"
-        placeholder="Complemento" [(ngModel)]="user.complemento">
-    </div>
-  </div>
+    <div class="form-row">
+      <div class="form-group col-sm-4">
+        <label for="bairro" control-label>Bairro</label>
+        <input type="text" #bairro="ngModel" name="bairro" id="bairro" class="form-control" placeholder="Bairro" ngModel
+          required [ngClass]="classError(bairro)">
+        <div class="invalid-feedback">Bairro obrigatório</div>
+      </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-12">
-      <label for="rua" control-label>Rua</label>
-      <input type="text" #rua="ngModel" name="rua" id="rua" class="form-control" placeholder="Rua"
-        [(ngModel)]="user.rua" required [ngClass]="classError(rua)">
-      <div class="invalid-feedback">Rua obrigatório</div>
-    </div>
-  </div>
+      <div class="form-group col-sm-4">
+        <label for="cidade" control-label>Cidade</label>
+        <input type="text" #cidade="ngModel" name="cidade" id="cidade" class="form-control" placeholder="Cidade" ngModel
+          required [ngClass]="classError(cidade)">
+        <div class="invalid-feedback">Cidade obrigatório</div>
+      </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-4">
-      <label for="bairro" control-label>Bairro</label>
-      <input type="text" #bairro="ngModel" name="bairro" id="bairro" class="form-control" placeholder="Bairro"
-        [(ngModel)]="user.bairro" required [ngClass]="classError(bairro)">
-      <div class="invalid-feedback">Bairro obrigatório</div>
-    </div>
-
-    <div class="form-group col-sm-4">
-      <label for="cidade" control-label>Cidade</label>
-      <input type="text" #cidade="ngModel" name="cidade" id="cidade" class="form-control" placeholder="Cidade"
-        [(ngModel)]="user.cidade" required [ngClass]="classError(cidade)">
-      <div class="invalid-feedback">Cidade obrigatório</div>
-    </div>
-
-    <div class="form-group col-sm-4">
-      <label for="estado" control-label>Estado</label>
-      <input type="text" #estado="ngModel" name="estado" id="estado" class="form-control" placeholder="Estado"
-        [(ngModel)]="user.estado" required [ngClass]="classError(estado)">
-      <div class="invalid-feedback">Estado obrigatório</div>
+      <div class="form-group col-sm-4">
+        <label for="estado" control-label>Estado</label>
+        <input type="text" #estado="ngModel" name="estado" id="estado" class="form-control" placeholder="Estado" ngModel
+          required [ngClass]="classError(estado)">
+        <div class="invalid-feedback">Estado obrigatório</div>
+      </div>
     </div>
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submite</button>
