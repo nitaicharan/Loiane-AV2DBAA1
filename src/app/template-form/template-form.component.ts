@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, Form } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { tap, take } from 'rxjs/operators';
-import { UserModel } from '../user.model';
 
 @Component({
   selector: 'app-template-form',
@@ -10,10 +9,6 @@ import { UserModel } from '../user.model';
   styleUrls: ['./template-form.component.scss']
 })
 export class TemplateFormComponent implements OnInit {
-  onSubmit(formulario: NgForm) {
-    const user: UserModel = formulario.value;
-    console.log(user);
-  }
 
   constructor(
     private httpClient: HttpClient,
@@ -22,6 +17,9 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(formulario: NgForm) {
+    this.httpClient.post('https://httpbin.org/post', formulario.value).pipe(tap(console.log), take(1)).subscribe();
+  }
   requiredTouched = (campo): boolean => campo.invalid && campo.touched;
 
   classError = (campo): string => this.requiredTouched(campo) ? 'is-invalid' : '';
