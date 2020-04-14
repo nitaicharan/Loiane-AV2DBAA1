@@ -5,19 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestePipe } from './teste.pipe';
-import { DataFormComponent } from './data-form/data-form.component';
 import { TemplateFormModule } from './template-form/template-form.module';
+import { DataFormModule } from './data-form/data-form.module';
 @NgModule({
   declarations: [
     AppComponent,
     TestePipe,
-    DataFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TemplateFormModule
+    TemplateFormModule,
+    DataFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
